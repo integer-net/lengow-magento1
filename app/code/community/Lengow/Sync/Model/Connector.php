@@ -154,7 +154,7 @@ class Lengow_Sync_Model_Connector
 
     private function _callAction($api, $args, $type, $format = 'json')
     {
-        $result = $this->_makeRequest($type, self::LENGOW_API_URL . $api, $args, $this->token);
+        $result = $this->_makeRequest($type, $this->endPoint() . $api, $args, $this->token);
         return $this->_format($result, $format);
     }
 
@@ -245,5 +245,16 @@ class Lengow_Sync_Model_Connector
         } else {
             return false;
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function endPoint()
+    {
+        if (Mage::getStoreConfig('lensync/api/mode') == Lengow_Sync_Model_System_Config_Source_Mode::SANDBOX) {
+            return self::LENGOW_API_SANDBOX_URL;
+        }
+        return self::LENGOW_API_URL;
     }
 }
