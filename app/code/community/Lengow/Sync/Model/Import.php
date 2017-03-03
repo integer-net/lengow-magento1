@@ -564,14 +564,24 @@ class Lengow_Sync_Model_Import extends Varien_Object
                 }
             }
         }
-        // set payment method lengow
-        $quote->getPayment()
-            ->importData(
-                array(
-                    'method'      => 'lengow',
-                    'marketplace' => (string)$order_data->marketplace.' - '.(string)(count($order_data->payments) > 0 ? $order_data->payments[0]->type : null),
-                )
-            );
+// get payment informations
+$paymentInfo = '';
+if (count($order_data->payments) > 0) {
+	$payment = $order_data->payments[0];
+	$paymentInfo.= ' - '.(string)$payment->type;
+	if (isset($payment->payment_terms->external_transaction_id)) {
+		$paymentInfo.= ' - '.(string)$payment->payment_terms->external_transaction_id;
+	}
+}
+// set payment method lengow
+$quote->getPayment()
+	->importData(
+	array(
+		'method'      => 'lengow',
+		'marketplace' => (string)$order_data->marketplace.$paymentInfo,
+	)
+);
+
         $quote->save();
         return $quote;
     }
