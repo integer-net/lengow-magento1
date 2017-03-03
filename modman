@@ -1,0 +1,13 @@
+app/code/community/Lengow/Export app/code/community/Lengow/Export
+app/code/community/Lengow/Sync app/code/community/Lengow/Sync
+app/code/community/Lengow/Tracker app/code/community/Lengow/Tracker
+app/design/adminhtml/default/default/layout/lengow.xml app/design/adminhtml/default/default/layout/lengow.xml
+app/design/adminhtml/default/default/template/lengow app/design/adminhtml/default/default/template/lengow
+app/design/frontend/base/default/layout/lengow.xml app/design/frontend/base/default/layout/lengow.xml
+app/design/frontend/base/default/template/lengow app/design/frontend/base/default/template/lengow
+app/etc/modules/Lengow_Connector.xml app/etc/modules/Lengow_Connector.xml
+skin/adminhtml/default/default/lengow/css skin/adminhtml/default/default/lengow/css
+skin/adminhtml/default/default/lengow/js skin/adminhtml/default/default/lengow/js
+skin/frontend/base/default/lengow/js skin/frontend/base/default/lengow/js
+@shell mkdir $PROJECT/media/lengow && cp $MODULE/media/lengow/import.flag $PROJECT/media/lengow/import.flag
+@shell cp -u $MODULE/app/code/community/Lengow/Tracker/etc/plugins.xml.dist $MODULE/app/code/community/Lengow/Tracker/etc/plugins.xml
